@@ -1,0 +1,45 @@
+class Bunnies:
+    
+    species = 'Oryctolagus cuniculus domesticus'
+    
+    """Create an object with the name, breed and age of the rabbit"""
+    def __init__(self, name, breed, age):
+        self.name = name
+        self.breed = breed
+        self.age = age
+    
+    """Return a simple text with some info"""    
+    def __str__(self):
+        return f'{self.name} is a {self.breed} of the {self.species} species and is {self.age} years old.'
+        
+"""We need to know how many rabbits the user is inputting info for the loop"""        
+herd=int(input('What is the size of the herd? '))     
+
+"""Need to make a dictionary to pass the name variable into the object or else it wont work since we cant call an pbject with a string"""
+bunniesDic = {}
+
+"""Running the loop and creating the object for wach bunny"""
+while herd>0:
+    name = input('What is the rabbits name? ')
+    age = input('What is the rabbits age? ')
+    breed = input('What is the rabbits breed? ')
+    bunniesDic[name] = Bunnies(name, breed, age)
+    herd=herd-1
+
+"""Since we have the dictionary with all the rabbits names, we can use that to itterate through it and print out the info line"""  
+print(bunniesDic)
+for x in bunniesDic:
+    print(bunniesDic[x])
+    
+"""Here we can ask the user if they want any info from a particuler rabbit."""  
+recall = input('Which bunnies info would you like? ')
+while recall:
+    keylist = list(bunniesDic.keys())
+    if recall in keylist:
+        print(bunniesDic[recall])
+        recall = input('Which bunnies info would you like? ')
+    else:
+        print('Please enter a valid name.')
+        recall = input('Which bunnies info would you like? ')
+    
+"""print(bunniesDic['Brownie'].breed)"""
